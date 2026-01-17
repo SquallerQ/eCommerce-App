@@ -280,7 +280,7 @@ const RegistrationForm: React.FC = () => {
       password: data.password,
       firstName: data.firstName,
       lastName: data.lastName,
-      dateOfBirth: data.dateOfBirth.format("YYYY-MM-DD"),
+      dateOfBirth: data.dateOfBirth?.format("YYYY-MM-DD") || "",
       addresses: addressesArr,
       defaultBillingAddress,
       defaultShippingAddress,

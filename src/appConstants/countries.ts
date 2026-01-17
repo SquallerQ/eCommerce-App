@@ -120,8 +120,6 @@ export const COUNTRIES = [
   { name: "Cook Islands", code: "CK" },
   { name: "Serbia", code: "RS" },
   { name: "Montenegro", code: "ME" },
-  { name: "Serbia and Montenegro", code: "CS" }, // устаревшее
-  { name: "Yugoslavia", code: "YU" }, // устаревшее
   { name: "Christmas Island", code: "CX" },
   { name: "Ethiopia", code: "ET" },
   { name: "Falkland Islands", code: "FK" },

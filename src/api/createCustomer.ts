@@ -3,7 +3,7 @@ import { getAccessToken } from "./getAccessToken";
 const projectKey = import.meta.env.VITE_CTP_PROJECT_KEY;
 const apiUrl = import.meta.env.VITE_CTP_API_URL;
 
-export async function createCustomer(customerDraft) {
+export async function createCustomer(customerDraft: unknown) {
   const token = await getAccessToken();
 
   const response = await fetch(`${apiUrl}/${projectKey}/customers`, {

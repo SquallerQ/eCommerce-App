@@ -416,7 +416,7 @@ export async function applyDiscountCode(cartId: string, cartVersion: number, cod
       })
       .execute();
     return response.body;
-  } catch (error) {
-    throw new Error(error.message || "Invalid promo code");
+  } catch {
+    throw new Error("Invalid promo code");
   }
 }

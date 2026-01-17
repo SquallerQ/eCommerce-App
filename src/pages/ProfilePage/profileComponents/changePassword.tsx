@@ -54,7 +54,7 @@ export const ChangePasswordForm = ({ onCancel, onSuccess, isUpdating = false }: 
       toast.success("Password changed successfully!");
     } catch (error) {
       const errorMessage =
-        error?.message === "Invalid current password"
+        error instanceof Error && error.message === "Invalid current password"
           ? "Invalid current password"
           : "Failed to change password. Please try again.";
       setErrors({ password: errorMessage });

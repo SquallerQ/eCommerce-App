@@ -27,11 +27,18 @@ const useCustomer = () => {
       const customerData = await getCurrentCustomer(token);
       setCustomer(customerData);
       setError(null);
-    } catch (err) {
-      const errorMessage =
-        err?.body?.statusCode === 401 ? "Session expired. Please log in again." : "Failed to load user data.";
+    } catch (err: unknown) {
+      const hasStatusCode =
+        err &&
+        typeof err === "object" &&
+        "body" in err &&
+        err.body &&
+        typeof err.body === "object" &&
+        "statusCode" in err.body;
+      const statusCode = hasStatusCode ? (err.body as { statusCode: number }).statusCode : null;
+      const errorMessage = statusCode === 401 ? "Session expired. Please log in again." : "Failed to load user data.";
       setError(errorMessage);
-      if (err?.body?.statusCode === 401) {
+      if (statusCode === 401) {
         setCookie("access_token", "");
         window.location.href = "/login";
       }
@@ -67,11 +74,17 @@ export const ProfilePage = () => {
       if (typeof response === "string") throw new Error(response);
       await refreshCustomer();
       setIsEditing(false);
-    } catch (err) {
-      setUpdateError(
-        err?.body?.statusCode === 401 ? "Session expired. Please log in again." : "Failed to update profile."
-      );
-      if (err?.body?.statusCode === 401) window.location.href = "/login";
+    } catch (err: unknown) {
+      const hasStatusCode =
+        err &&
+        typeof err === "object" &&
+        "body" in err &&
+        err.body &&
+        typeof err.body === "object" &&
+        "statusCode" in err.body;
+      const statusCode = hasStatusCode ? (err.body as { statusCode: number }).statusCode : null;
+      setUpdateError(statusCode === 401 ? "Session expired. Please log in again." : "Failed to update profile.");
+      if (statusCode === 401) window.location.href = "/login";
     } finally {
       setIsUpdating(false);
     }
@@ -96,8 +109,17 @@ export const ProfilePage = () => {
 
       await refreshCustomer(loginResponse.accessToken);
       setIsEditingPassword(false);
-    } catch (err) {
-      if (err?.body?.statusCode === 401) {
+    } catch (err: unknown) {
+      const hasStatusCode =
+        err &&
+        typeof err === "object" &&
+        "body" in err &&
+        err.body &&
+        typeof err.body === "object" &&
+        "statusCode" in err.body;
+      const statusCode = hasStatusCode ? (err.body as { statusCode: number }).statusCode : null;
+
+      if (statusCode === 401) {
         try {
           const loginResponse = await loginUser(customer!.email, newPassword);
           setCookie("access_token", loginResponse.accessToken, { maxAge: 3600 });
@@ -112,7 +134,8 @@ export const ProfilePage = () => {
           window.location.href = "/login";
         }
       } else {
-        setUpdateError(err.message || "Failed to change password.");
+        const errorMessage = err instanceof Error ? err.message : "Failed to change password.";
+        setUpdateError(errorMessage);
       }
     } finally {
       setIsUpdating(false);
