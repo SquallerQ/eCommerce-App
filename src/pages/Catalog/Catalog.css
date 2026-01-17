@@ -1,12 +1,8 @@
 .catalog-container {
   display: flex;
-  min-height: 100vh;
   background-color: #f5f6f5;
-  font-family:
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
+  /* header 80px + footer 80px */
+  min-height: calc(100vh - 160px);
 }
 
 .sidebar {

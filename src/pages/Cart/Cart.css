@@ -2,7 +2,8 @@
   padding: 24px;
   max-width: 1200px;
   margin: 0 auto;
-  min-height: 81vh;
+  /* header 80px + footer 80px */
+  min-height: calc(100vh - 160px);
 }
 
 .cart-title {
@@ -25,7 +26,7 @@
 }
 
 .cart-empty-link {
-  color: #4a90e2;
+  color: #4A06A9;
   text-decoration: none;
 }
 

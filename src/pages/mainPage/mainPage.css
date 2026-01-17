@@ -12,7 +12,8 @@
 .page-container {
   display: flex;
   flex-direction: column;
-  max-height: 78vh;
+  /* header 80px + footer 80px */
+  min-height: calc(100vh - 160px);
   background-image: url("/assets/background.png");
   background-size: cover;
   background-position: left;

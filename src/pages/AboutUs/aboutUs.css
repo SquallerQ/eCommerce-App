@@ -12,7 +12,9 @@
 .about-container {
   display: flex;
   flex-direction: column;
-  min-height: 78vh;
+  justify-content: center;
+  /* header 80px + footer 80px */
+  min-height: calc(100vh - 160px);
   padding-top: 20px;
   background-image: url("/assets/background.png");
   background-size: cover;

@@ -1,2 +1,4 @@
-npm run lint:fix
+#!/bin/sh
+
+npm run lint
 npm test
