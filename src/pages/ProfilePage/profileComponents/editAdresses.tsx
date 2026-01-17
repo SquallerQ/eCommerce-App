@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import styles from "./Profile.module.css";
 import { Customer, MyCustomerUpdateAction } from "@commercetools/platform-sdk";
 import { postcodeValidator } from "postcode-validator";
-import { COUNTRIES } from "../../../appConstants/countries";
+import { COUNTRIES } from "../../../components/RegistrationForm/countriesList";
 import { useCookieManager } from "../../../hooks/useCookieManager";
 import { getCurrentCustomer } from "../../../utils/sdkManage";
 

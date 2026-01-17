@@ -26,7 +26,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Delete, Visibility, VisibilityOff } from "@mui/icons-material";
 import { postcodeValidator } from "postcode-validator";
-import { COUNTRIES } from "../../appConstants/countries";
+import { COUNTRIES } from "./countriesList";
 import { createCustomer } from "../../api/createCustomer";
 import toast, { Toaster } from "react-hot-toast";
 import { loginCustomer } from "../../api/loginCustomer";
