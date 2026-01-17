@@ -1,6 +1,6 @@
 .product-page {
   background-color: #ffffff;
-  background-image: url('/assets/background.png');
+  background-image: url("/assets/background.png");
   background-size: cover;
   background-position: left;
   background-repeat: no-repeat;
@@ -9,7 +9,7 @@
 }
 
 .product-page::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
