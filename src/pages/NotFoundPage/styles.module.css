@@ -1,0 +1,8 @@
+.container {
+  color: #1787ee;
+  height: calc(100vh - 60px - 60px);
+  background-color: rgb(40 40 40);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

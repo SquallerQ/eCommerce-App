@@ -1,0 +1,102 @@
+@font-face {
+  font-family: "Playwrite";
+  src:
+    url("/assets/fonts/Playwrite-degrund.woff2") format("woff2"),
+    url("/assets/fonts/Playwrite-degrund.woff") format("woff"),
+    url("/assets/fonts/Playwrite-degrund.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+.header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 7px 0;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 64px;
+}
+
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.logo {
+  height: 40px;
+}
+
+.logoText {
+  font-family: "Playwrite", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #2d2d2d;
+}
+
+.desktopNav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.navButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.navIcons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.linkDisabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.navIconsMobile {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.mobileMenuContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+@media (max-width: 899px) {
+  .desktopNav {
+    display: none;
+  }
+  .navButtons {
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .headerContent {
+    padding: 0 12px;
+  }
+  .logoText {
+    font-size: 0.6rem;
+  }
+}

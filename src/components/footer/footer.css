@@ -1,0 +1,90 @@
+@font-face {
+  font-family: "Playwrite";
+  src:
+    url("/fonts/Playwrite-degrund.woff2") format("woff2"),
+    url("/fonts/Playwrite-degrund.woff") format("woff"),
+    url("/fonts/Playwrite-degrund.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.footer {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-top: 2px solid #e0e0e0;
+  width: 100%;
+  padding: 7px 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.footer-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #2d2d2d;
+}
+
+.footer-link span {
+  font-family: "Playwrite", sans-serif;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.github-icon {
+  width: 45px;
+  height: 45px;
+}
+
+.school-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.footer-text {
+  font-family: "Playwrite", sans-serif;
+  font-size: 0.85rem;
+  color: #2d2d2d;
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    padding: 0 12px;
+  }
+
+  .github-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .school-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .footer-link span {
+    font-size: 0.7rem;
+  }
+
+  .footer-text {
+    display: none;
+  }
+}

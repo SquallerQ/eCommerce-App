@@ -1,0 +1,20 @@
+# logs
+logs
+*.log
+
+# Dependency directories
+node_modules/
+
+# TypeScript build info
+*.tsbuildinfo
+tsconfig.app.tsbuildinfo
+tsconfig.node.tsbuildinfo
+
+# env file
+.env 
+
+# vscode settings
+.vscode
+
+# dist
+dist
