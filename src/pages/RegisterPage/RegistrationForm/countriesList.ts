@@ -41,3 +41,6 @@ export const COUNTRIES = [
   { name: "Serbia", code: "RS" },
   { name: "Montenegro", code: "ME" },
 ];
+
+COUNTRIES.sort((a, b) => a.name.localeCompare(b.name));
+export const COUNTRY_NAMES = COUNTRIES.map((country) => country.name);

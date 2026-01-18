@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registrationSchema } from "./validation";
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 import {
   TextField,
   Button,
@@ -25,48 +25,15 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Delete, Visibility, VisibilityOff } from "@mui/icons-material";
-import { COUNTRIES } from "./countriesList";
+import { COUNTRY_NAMES } from "./countriesList";
+import { FormData, defaultAddress } from "./types";
+import { transformFormDataToAPI } from "./utils";
 import { createCustomer } from "../../../api/createCustomer";
 import toast, { Toaster } from "react-hot-toast";
 import { loginCustomer } from "../../../api/loginCustomer";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../../context/AuthContext";
 import { useCookieManager } from "../../../hooks/useCookieManager";
-
-COUNTRIES.sort((a, b) => a.name.localeCompare(b.name));
-const COUNTRY_NAMES = COUNTRIES.map((country) => country.name);
-
-interface Address {
-  billing: {
-    country: string;
-    street: string;
-    city: string;
-    postalCode: string;
-  };
-  shipping: {
-    sameAsBilling: boolean;
-    country: string;
-    street: string;
-    city: string;
-    postalCode: string;
-  };
-}
-
-interface FormData {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  dateOfBirth: Dayjs | null;
-  addresses: Address[];
-  defaultBillingIndex: number;
-  defaultShippingIndex: number;
-}
-
-const defaultAddress: Address = {
-  billing: { country: "", street: "", city: "", postalCode: "" },
-  shipping: { sameAsBilling: true, country: "", street: "", city: "", postalCode: "" },
-};
 
 const RegistrationForm: React.FC = () => {
   const {
@@ -121,93 +88,33 @@ const RegistrationForm: React.FC = () => {
   };
 
   const onSubmit = async (data: FormData) => {
-    const loadingToast = toast.loading("Waiting...", {
-      style: { fontSize: "20px" },
-    });
+    const loadingToast = toast.loading("Waiting...", { style: { fontSize: "20px" } });
 
-    const addressesArr: {
-      key: string;
-      country: string;
-      streetName: string;
-      city: string;
-      postalCode: string;
-    }[] = [];
-
-    data.addresses.forEach((pair, idx) => {
-      addressesArr.push({
-        key: `billing-${idx + 1}`,
-        country: COUNTRIES.find((c) => c.name === pair.billing.country)?.code || "",
-        streetName: pair.billing.street,
-        city: pair.billing.city,
-        postalCode: pair.billing.postalCode,
-      });
-
-      if (pair.shipping.sameAsBilling) {
-        addressesArr.push({
-          key: `shipping-${idx + 1}`,
-          country: COUNTRIES.find((c) => c.name === pair.billing.country)?.code || "",
-          streetName: pair.billing.street,
-          city: pair.billing.city,
-          postalCode: pair.billing.postalCode,
-        });
-      } else {
-        addressesArr.push({
-          key: `shipping-${idx + 1}`,
-          country: COUNTRIES.find((c) => c.name === pair.shipping.country)?.code || "",
-          streetName: pair.shipping.street,
-          city: pair.shipping.city,
-          postalCode: pair.shipping.postalCode,
-        });
-      }
-    });
-
-    const defaultBillingAddress = defaultBillingIndex * 2;
-    const defaultShippingAddress = defaultShippingIndex * 2 + 1;
-
-    const result = {
-      email: data.email,
-      password: data.password,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      dateOfBirth: data.dateOfBirth?.format("YYYY-MM-DD") || "",
-      addresses: addressesArr,
-      defaultBillingAddress,
-      defaultShippingAddress,
-    };
-
+    const result = transformFormDataToAPI(data);
     const response = await createCustomer(result);
 
     if (!response.ok) {
       const err = await response.json();
       toast.dismiss(loadingToast);
-      toast.error(err.message, {
-        duration: 5000,
-        style: { fontSize: "20px" },
-      });
+      toast.error(err.message, { duration: 5000, style: { fontSize: "20px" } });
       return;
     }
 
     const customer = await response.json();
     console.log("customer created", customer);
-    toast.success("Successfully created!", {
-      duration: 5000,
-      style: { fontSize: "20px" },
-      id: loadingToast,
-    });
+    toast.success("Successfully created!", { duration: 5000, style: { fontSize: "20px" }, id: loadingToast });
 
     const loginResult = await loginCustomer({ email: data.email, password: data.password });
     if (loginResult.ok) {
       navigate("/");
-      toast.success(`Hello, ${data.email}`, {
-        duration: 5000,
-        style: { fontSize: "20px" },
-      });
+      toast.success(`Hello, ${data.email}`, { duration: 5000, style: { fontSize: "20px" } });
     }
+
     const loginData = await loginResult.json();
     setIsLoggedIn(true);
     console.log("customer login", loginData);
-    const expiresDate = new Date(Date.now() + loginData.expires_in * 1000);
 
+    const expiresDate = new Date(Date.now() + loginData.expires_in * 1000);
     setCookie("access_token", loginData.access_token, { expires: expiresDate });
     setCookie("refresh_token", loginData.refresh_token);
     setCookie("scope", loginData.scope);
