@@ -1,0 +1,77 @@
+.formContainer {
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 4px;
+  background-color: rgba(245, 240, 255, 0.9);
+  border: 1px solid #8b5cf6;
+  z-index: 4;  
+}
+
+.addressBox {
+  margin-bottom: 32px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  position: relative;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.defaultAddressRow {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.divider {
+  margin: 24px 0;
+}
+
+.sectionTitle {
+  margin-bottom: 8px;
+  color: #282828;
+}
+
+.addAddressButton {
+  padding: 8px 22px;
+  border: 1px solid #4a06a9;
+  background: transparent;
+  color: #4a06a9;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+
+.addAddressButton:hover {
+  color: #fff;
+  background-color: #4a06a9;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 10px;
+  margin-top: 24px;
+  color: #ffffff;
+  background-color: #4a06a9;
+  border: none;
+  border-radius: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+
+.submitButton:hover {
+  background: #280057;
+}
+
+.formContainer input,
+.formContainer select {
+  background-color: #fff !important;
+}

@@ -5,7 +5,6 @@ import { registrationSchema } from "./validation";
 import dayjs from "dayjs";
 import {
   TextField,
-  Button,
   Box,
   Typography,
   FormControl,
@@ -34,6 +33,7 @@ import { loginCustomer } from "../../../api/loginCustomer";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../../context/AuthContext";
 import { useCookieManager } from "../../../hooks/useCookieManager";
+import styles from "./styles.module.css";
 
 const RegistrationForm: React.FC = () => {
   const {
@@ -128,12 +128,7 @@ const RegistrationForm: React.FC = () => {
   };
 
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit(onSubmit)}
-      noValidate
-      sx={{ maxWidth: 700, mx: "auto", p: 3, boxShadow: 1, borderRadius: 1, background: "#fff" }}
-    >
+    <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate className={styles.formContainer}>
       <Toaster />
       <Grid container spacing={2}>
         <Grid size={6}>
@@ -185,6 +180,7 @@ const RegistrationForm: React.FC = () => {
                   maxDate={dayjs("2025-05-12")}
                   slotProps={{
                     textField: {
+                      sx: { backgroundColor: "white" },
                       fullWidth: true,
                       margin: "normal",
                       error: !!error,
@@ -221,24 +217,23 @@ const RegistrationForm: React.FC = () => {
         }}
       />
 
-      <Divider sx={{ my: 3 }} />
-      <Typography variant="h6" gutterBottom color="info">
+      <Typography variant="h6" gutterBottom color="#282828">
         Address Information
       </Typography>
 
       {fields.map((field, idx) => (
-        <Box key={field.id} sx={{ mb: 4, border: "1px solid #e0e0e0", borderRadius: 2, p: 2, position: "relative" }}>
+        <Box key={field.id} className={styles.addressBox}>
           {fields.length > 1 && (
             <IconButton
               aria-label="delete"
               size="small"
               onClick={() => handleRemoveAdress(idx)}
-              sx={{ position: "absolute", top: 8, right: 8 }}
+              className={styles.deleteButton}
             >
               <Delete />
             </IconButton>
           )}
-          <Typography variant="subtitle1" sx={{ mb: 1, color: "#282828" }}>
+          <Typography variant="subtitle1" className={styles.sectionTitle}>
             Billing Address #{idx + 1}
           </Typography>
           <Grid container spacing={2}>
@@ -250,6 +245,7 @@ const RegistrationForm: React.FC = () => {
                   labelId={`billing-country-label-${idx}`}
                   label="Country"
                   defaultValue=""
+                  sx={{ backgroundColor: "white" }}
                 >
                   {COUNTRY_NAMES.map((country) => (
                     <MenuItem key={country} value={country}>
@@ -291,15 +287,18 @@ const RegistrationForm: React.FC = () => {
               />
             </Grid>
           </Grid>
-          <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
+          <Box className={styles.defaultAddressRow}>
             <Radio
               checked={defaultBillingIndex === idx}
               onChange={() => setValue("defaultBillingIndex", idx)}
               value={idx}
-              color="primary"
+              sx={{
+                color: "#8b5cf6",
+                "&.Mui-checked": { color: "#8b5cf6" },
+              }}
               inputProps={{ "aria-label": `Set as default billing address #${idx + 1}` }}
             />
-            <Typography color="info">Set as default billing address</Typography>
+            <Typography sx={{ color: "#655679" }}>Set as default billing address</Typography>
           </Box>
 
           <Divider sx={{ my: 2 }} />
@@ -312,9 +311,13 @@ const RegistrationForm: React.FC = () => {
               <Checkbox
                 checked={!!addresses[idx]?.shipping?.sameAsBilling}
                 onChange={(e) => handleSameAsBilling(idx, e.target.checked)}
+                sx={{
+                  color: "#8b5cf6",
+                  "&.Mui-checked": { color: "#8b5cf6" },
+                }}
               />
             }
-            label={<Typography color="info">Use same as billing address</Typography>}
+            label={<Typography sx={{ color: "#655679" }}>Use same as billing address</Typography>}
           />
           {!addresses[idx]?.shipping?.sameAsBilling && (
             <Grid container spacing={2}>
@@ -326,6 +329,7 @@ const RegistrationForm: React.FC = () => {
                     labelId={`shipping-country-label-${idx}`}
                     label="Country"
                     defaultValue=""
+                    sx={{ backgroundColor: "white" }}
                   >
                     {COUNTRY_NAMES.map((country) => (
                       <MenuItem key={country} value={country}>
@@ -368,26 +372,29 @@ const RegistrationForm: React.FC = () => {
               </Grid>
             </Grid>
           )}
-          <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
+          <Box className={styles.defaultAddressRow}>
             <Radio
               checked={defaultShippingIndex === idx}
               onChange={() => setValue("defaultShippingIndex", idx)}
               value={idx}
-              color="primary"
+              sx={{
+                color: "#8b5cf6",
+                "&.Mui-checked": { color: "#8b5cf6" },
+              }}
               inputProps={{ "aria-label": `Set as default shipping address #${idx + 1}` }}
             />
-            <Typography color="info">Set as default shipping address</Typography>
+            <Typography sx={{ color: "#655679" }}>Set as default shipping address</Typography>
           </Box>
         </Box>
       ))}
 
-      <Button variant="outlined" onClick={() => append(defaultAddress)} sx={{ mb: 2 }}>
+      <button className={styles.addAddressButton} onClick={() => append(defaultAddress)}>
         Add another address
-      </Button>
+      </button>
 
-      <Button type="submit" variant="contained" color="primary" fullWidth size="large" sx={{ mt: 3 }}>
+      <button className={styles.submitButton} type="submit">
         Register
-      </Button>
+      </button>
     </Box>
   );
 };
