@@ -64,6 +64,26 @@ const RegistrationForm: React.FC = () => {
   const { setIsLoggedIn } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
 
+  const inputStyles = {
+    "& .MuiOutlinedInput-root": {
+      "&.Mui-focused fieldset": {
+        borderColor: "#4a06a9",
+      },
+    },
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: "#4a06a9",
+    },
+    "& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#ff4d4d",
+    },
+    "& .MuiInputLabel-root.Mui-error": {
+      color: "#ff4d4d",
+    },
+    "& .MuiFormHelperText-root.Mui-error": {
+      color: "#ff4d4d",
+    },
+  };
+
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -129,6 +149,7 @@ const RegistrationForm: React.FC = () => {
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate className={styles.formContainer}>
+      <h1 className={styles.formTitle}>Create Account</h1>
       <Toaster />
       <Grid container spacing={2}>
         <Grid size={6}>
@@ -139,6 +160,7 @@ const RegistrationForm: React.FC = () => {
             margin="normal"
             error={!!errors.firstName}
             helperText={errors.firstName?.message}
+            sx={inputStyles}
           />
         </Grid>
         <Grid size={6}>
@@ -149,6 +171,7 @@ const RegistrationForm: React.FC = () => {
             margin="normal"
             error={!!errors.lastName}
             helperText={errors.lastName?.message}
+            sx={inputStyles}
           />
         </Grid>
         <Grid size={6}>
@@ -160,6 +183,7 @@ const RegistrationForm: React.FC = () => {
             margin="normal"
             error={!!errors.email}
             helperText={errors.email?.message}
+            sx={inputStyles}
           />
         </Grid>
         <Grid size={6}>
@@ -180,11 +204,25 @@ const RegistrationForm: React.FC = () => {
                   maxDate={dayjs("2025-05-12")}
                   slotProps={{
                     textField: {
-                      sx: { backgroundColor: "white" },
                       fullWidth: true,
                       margin: "normal",
                       error: !!error,
                       helperText: error?.message,
+                      sx: {
+                        backgroundColor: "white",
+                        "& fieldset": {
+                          borderColor: "#ccc !important",
+                        },
+                        "&:hover fieldset": {
+                          borderColor: "#4a06a9 !important",
+                        },
+                        "& .Mui-focused fieldset": {
+                          borderColor: "#4a06a9 !important",
+                        },
+                        "& .MuiInputLabel-root.Mui-focused": {
+                          color: "#4a06a9",
+                        },
+                      },
                     },
                   }}
                   onClose={() => {
@@ -206,6 +244,7 @@ const RegistrationForm: React.FC = () => {
         margin="normal"
         error={!!errors.password}
         helperText={errors.password?.message}
+        sx={inputStyles}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -217,9 +256,7 @@ const RegistrationForm: React.FC = () => {
         }}
       />
 
-      <Typography variant="h6" gutterBottom color="#282828">
-        Address Information
-      </Typography>
+      <h3 className={styles.sectionHeading}>Address Information</h3>
 
       {fields.map((field, idx) => (
         <Box key={field.id} className={styles.addressBox}>
@@ -238,7 +275,12 @@ const RegistrationForm: React.FC = () => {
           </Typography>
           <Grid container spacing={2}>
             <Grid size={6}>
-              <FormControl fullWidth margin="normal" error={!!errors.addresses?.[idx]?.billing?.country}>
+              <FormControl
+                fullWidth
+                margin="normal"
+                error={!!errors.addresses?.[idx]?.billing?.country}
+                sx={inputStyles}
+              >
                 <InputLabel id={`billing-country-label-${idx}`}>Country</InputLabel>
                 <Select
                   {...register(`addresses.${idx}.billing.country`)}
@@ -264,6 +306,7 @@ const RegistrationForm: React.FC = () => {
                 margin="normal"
                 error={!!errors.addresses?.[idx]?.billing?.postalCode}
                 helperText={errors.addresses?.[idx]?.billing?.postalCode?.message}
+                sx={inputStyles}
               />
             </Grid>
             <Grid size={6}>
@@ -274,6 +317,7 @@ const RegistrationForm: React.FC = () => {
                 margin="normal"
                 error={!!errors.addresses?.[idx]?.billing?.street}
                 helperText={errors.addresses?.[idx]?.billing?.street?.message}
+                sx={inputStyles}
               />
             </Grid>
             <Grid size={6}>
@@ -284,6 +328,7 @@ const RegistrationForm: React.FC = () => {
                 margin="normal"
                 error={!!errors.addresses?.[idx]?.billing?.city}
                 helperText={errors.addresses?.[idx]?.billing?.city?.message}
+                sx={inputStyles}
               />
             </Grid>
           </Grid>
