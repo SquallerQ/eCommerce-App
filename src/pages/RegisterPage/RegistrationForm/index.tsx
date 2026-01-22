@@ -33,6 +33,7 @@ import { loginCustomer } from "../../../api/loginCustomer";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../../context/AuthContext";
 import { useCookieManager } from "../../../hooks/useCookieManager";
+import { inputStyles, typographyStyles } from "./formStyles";
 import styles from "./styles.module.css";
 
 const RegistrationForm: React.FC = () => {
@@ -63,36 +64,6 @@ const RegistrationForm: React.FC = () => {
   const { setCookie } = useCookieManager();
   const { setIsLoggedIn } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
-
-  const inputStyles = {
-    fontFamily: "Playwrite, sans-serif",
-    marginBottom: "30px",
-    "& .MuiOutlinedInput-root": {
-      "&.Mui-focused fieldset": {
-        borderColor: "#4a06a9",
-      },
-    },
-    "& .MuiInputLabel-root.Mui-focused": {
-      color: "#4a06a9",
-      fontFamily: "Playwrite, sans-serif",
-    },
-    "& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#ff9999",
-    },
-    "& .MuiInputLabel-root.Mui-error": {
-      color: "#ff9999",
-    },
-    "& .MuiFormHelperText-root": {
-      fontFamily: "Playwrite, sans-serif",
-      position: "absolute",
-      bottom: "-25px",
-      left: "5px",
-      margin: 0,
-    },
-    "& .MuiFormHelperText-root.Mui-error": {
-      color: "#ff9999",
-    },
-  };
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -276,7 +247,7 @@ const RegistrationForm: React.FC = () => {
               <Delete />
             </IconButton>
           )}
-          <Typography variant="subtitle1" className={styles.sectionTitle}>
+          <Typography variant="subtitle1" className={styles.sectionTitle} sx={{ ...typographyStyles }}>
             Billing Address #{idx + 1}
           </Typography>
           <Grid container columnSpacing={2}>
@@ -341,11 +312,11 @@ const RegistrationForm: React.FC = () => {
               }}
               inputProps={{ "aria-label": `Set as default billing address #${idx + 1}` }}
             />
-            <Typography sx={{ color: "#655679" }}>Set as default billing address</Typography>
+            <Typography sx={{ ...typographyStyles }}>Set as default billing address</Typography>
           </Box>
 
           <Divider sx={{ my: 2 }} />
-          <Typography variant="subtitle1" sx={{ mb: 1, color: "#282828" }}>
+          <Typography variant="subtitle1" sx={{ ...typographyStyles }}>
             Shipping Address #{idx + 1}
           </Typography>
           <FormControlLabel
@@ -360,7 +331,7 @@ const RegistrationForm: React.FC = () => {
                 }}
               />
             }
-            label={<Typography sx={{ color: "#655679" }}>Use same as billing address</Typography>}
+            label={<Typography sx={{ ...typographyStyles }}>Use same as billing address</Typography>}
           />
           {!addresses[idx]?.shipping?.sameAsBilling && (
             <Grid container spacing={2}>
@@ -426,7 +397,7 @@ const RegistrationForm: React.FC = () => {
               }}
               inputProps={{ "aria-label": `Set as default shipping address #${idx + 1}` }}
             />
-            <Typography sx={{ color: "#655679" }}>Set as default shipping address</Typography>
+            <Typography sx={{ ...typographyStyles }}>Set as default shipping address</Typography>
           </Box>
         </Box>
       ))}

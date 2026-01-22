@@ -32,7 +32,7 @@
 }
 
 .deleteButton {
-  position: absolute;
+  position: absolute !important;
   top: 8px;
   right: 8px;
 }
@@ -40,7 +40,6 @@
 .defaultAddressRow {
   display: flex;
   align-items: center;
-  margin-top: 16px;
 }
 
 .divider {
@@ -48,8 +47,7 @@
 }
 
 .sectionTitle {
-  margin-bottom: 8px;
-  color: #282828;
+  margin-bottom: 18px !important;
 }
 
 .addAddressButton {
