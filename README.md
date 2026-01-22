@@ -1,58 +1,94 @@
-# eCommerce-App task by RS School
+# eCommerce App
 
-## Overview
-This ecommerce website is storefront on the internet. It facilitates the transaction between a buyer and seller. 
-It is the virtual space where one showcase products, and online customers make selections. The website acts as the product shelves, sales staff, and cash register of online business channel.
+**eCommerce App** is a **training frontend project** developed as part of the **RS School eCommerce Application** course.  
+The project represents an online store storefront with product catalog, cart, authentication, and user profile features.
 
-## Making contributions to codebase
-All the features/fixes to be done in separate github branch and updated by PR to "develop" branch
+> ⚠️ To run the application correctly, a `.env` file with API keys is required.  
+> A **trial API access is available for 2 months**.
+
+---
+
+## 📌 Project Origin
+
+> **Important note**
+
+This repository is an **independently maintained personal version** of the original team project:  
+https://github.com/KostyaKuk/eCommerce-App
+
+- The original project was developed **in a team**
+- After the course completion, the codebase was moved to a **separate personal repository**
+- All further improvements and refactoring are done **individually**
+- The commit history in this repository **starts from this version**
+- Previous team commits and history can be found in the original repository
+
+👉 **Main repository for further development:**  
+https://github.com/SquallerQ/eCommerce-App
+
+## 🖥️ Screenshots
+![Screenshot 1](public/screenshot-1.png)  
+![Screenshot 2](public/screenshot-2.png)
+
+---
+
+## Features
+
+- Product catalog with categories and search
+- Product details page with image slider
+- User registration and authentication
+- Shopping cart with promo code support
+- User profile with personal data management
+- Client-side form validation
+- Public and protected routes
+- Responsive layout
 
 ## Technology Stack
 
-The following technologies were used to develop the project:
+- **TypeScript**
+- **React**
+- **Vite** — module bundler
+- **HTML / CSS**
+- **ESLint, Prettier** — code quality & formatting
+- **Jest** — testing
+- **Husky** — pre-commit hooks
 
-- **HTML, CSS and React** for developing
-- **ESLint, Prettier** for code validation
-- **Jest** for code testing
-- **Vite** as for module bundler
 
-## Setup instructions
+## 🔐 Environment Variables
 
-1. Install Node.js
-2. Fork this repository: https://github.com/KostyaKuk/eCommerce-App
-3. Clone your newly created repo: `https://github.com/<%your_github_username%>/eCommerce-App/`
-4. Go to folder `eCommerce-App`
-5. To install all dependencies use `npm install`
-6. To launch local server use `npm run dev`
-7. Now the project is ready for a work!
+To run the project locally, create a `.env` file in the project root.
 
-## Scripts 
+Example:
+```env
+# Commercetools API configuration (example)
 
-### Dev server
+VITE_CTP_PROJECT_KEY=your-project-key
+VITE_CTP_CLIENT_SECRET=your-client-secret
+VITE_CTP_CLIENT_ID=your-client-id
 
-1. Open console -> Use `npm run dev` command.
+VITE_CTP_AUTH_URL=https://auth.europe-west1.gcp.commercetools.com
+VITE_CTP_API_URL=https://api.europe-west1.gcp.commercetools.com
 
-### Build
+VITE_CTP_SCOPES=manage_project:your-project-key
+```
 
-1. Open console -> Use `npm run build` command.
+## 📦 Run Application Locally
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/SquallerQ/eCommerce-App.git
+   cd eCommerce-App
+   ```
 
-### Lint
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-1. Open console -> Use `npm run lint` command.
+3. **Create .env file**
+(see Environment Variables section)
 
-### Lint:fix
-
-1. Open console -> Use `npm run lint:fix` command.
-
-### Test
-
-1. Open console -> Use `npm run test` command.
-
-### Ci:Format
-
-1. Open console -> Use `npm run ci:format` command.
-
-### Format
-
-1. Open console -> Use `npm run format` command.
+4. **Start development server:**
+   ```bash
+   npm run dev
+   ```
+✅ The application will be available at
+http://localhost:5173
 
