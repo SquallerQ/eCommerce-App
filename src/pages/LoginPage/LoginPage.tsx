@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
-import { useCart } from "../../context/CartContext";
+import { useAuth } from "../../context/authContext";
+import { useCart } from "../../context/cartContext";
 import "./loginPage.css";
 import { loginUser, getOrCreateCustomerCart, mergeAnonymousCartToCustomerCart } from "../../utils/api";
 import { validationMessages } from "./validationMessages";

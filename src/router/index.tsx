@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router";
 import App from "../App";
-import LoginPage from "../pages/loginPage/loginPage";
-import MainPage from "../pages/mainPage/mainPage";
+import LoginPage from "../pages/LoginPage/LoginPage";
+import MainPage from "../pages/MainPage/mainPage";
 import Catalog from "../pages/Catalog/Catalog";
 import ProductPage from "../pages/ProductPage/ProductPage";
 import { RegisterPage } from "../pages/RegisterPage";
@@ -10,7 +10,7 @@ import { ProfilePage } from "../pages/ProfilePage";
 import Cart from "../pages/Cart/Cart";
 import { PublicRoute } from "./PublicRoute";
 import { PrivateRoute } from "./PrivateRoute";
-import AboutUs from "../pages/AboutUs";
+import AboutUs from "../pages/AboutUs/AboutUs";
 import { ROUTES } from "./routes";
 
 export const Router = () => {

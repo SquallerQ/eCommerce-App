@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../context/cartContext";
 import { changeLineItemQuantity, applyDiscountCode } from "../../utils/api";
 import {
   Typography,

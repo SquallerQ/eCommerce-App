@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router";
 import { Router } from "./router";
 import { CookiesProvider } from "react-cookie";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider } from "./context/authContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(

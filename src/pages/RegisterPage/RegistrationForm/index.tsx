@@ -31,7 +31,7 @@ import { createCustomer } from "../../../api/createCustomer";
 import toast, { Toaster } from "react-hot-toast";
 import { loginCustomer } from "../../../api/loginCustomer";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../../context/AuthContext";
+import { useAuth } from "../../../context/authContext";
 import { useCookieManager } from "../../../hooks/useCookieManager";
 import { inputStyles, typographyStyles } from "./formStyles";
 import styles from "./styles.module.css";

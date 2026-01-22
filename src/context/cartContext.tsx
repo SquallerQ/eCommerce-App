@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "./authContext";
 import { Cart } from "@commercetools/platform-sdk";
 import { getOrCreateCustomerCart, getAnonymousCart, createAnonymousCart } from "../utils/api";
 

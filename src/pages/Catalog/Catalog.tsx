@@ -10,8 +10,8 @@ import {
   createAnonymousCart,
   changeLineItemQuantity,
 } from "../../utils/api";
-import { useCart } from "../../context/CartContext";
-import { useAuth } from "../../context/AuthContext";
+import { useCart } from "../../context/cartContext";
+import { useAuth } from "../../context/authContext";
 import { useCookieManager } from "../../hooks/useCookieManager";
 
 import Slider from "@mui/material/Slider";
@@ -20,7 +20,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { ProductProjection } from "@commercetools/platform-sdk";
 
-import { ProductListProps } from "./Catalog.types";
+import { ProductListProps } from "./catalog.types";
 import "./Catalog.css";
 
 const ProductList: React.FC<ProductListProps> = React.memo(
